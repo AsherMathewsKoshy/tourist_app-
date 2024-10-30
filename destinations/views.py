@@ -53,6 +53,11 @@ def login_view(request):
 
 
 def destination_list(request):
+    query = request.GET.get('search', '')  # Get the search query from the request
+    if query:
+        destinations = Destination.objects.filter(place_name__icontains=query)  # Filter based on the search query
+    else:
+        destinations = Destination.objects.all() 
     destinations = Destination.objects.all()
     return render(request, 'destination_list.html', {'destinations': destinations})
 

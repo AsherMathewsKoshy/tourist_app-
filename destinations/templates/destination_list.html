@@ -108,6 +108,7 @@
             font-size: 1.5em;
             margin-top: 20px;
         }
+
     </style>
 </head>
 <body>
@@ -115,6 +116,10 @@
 <!-- Navbar with app name and link to editor -->
 <div class="navbar">
     <span class="app-name">WanderFind</span>  <!-- Unique App Name -->
+    <form action="" method="get" style="flex-grow: 1; margin-left: 20px;">
+        <input type="text" name="search" placeholder="Search Destinations..." style="padding: 8px; width: 80%;">
+        <button type="submit" style="padding: 8px;">Search</button>
+    </form>
     <a href="/destinationeditor">Destination List Editor</a>
 </div>
 
