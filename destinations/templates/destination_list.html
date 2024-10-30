@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
     <style>
+        /* Existing CSS styles remain unchanged */
         body {
             font-family: 'Roboto', sans-serif;
             background: linear-gradient(to right, #74ebd5, #ACB6E5); /* Smooth gradient */
@@ -108,12 +109,23 @@
             font-size: 1.5em;
             margin-top: 20px;
         }
-
+        .add-location {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .add-location:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
 
-<!-- Navbar with app name and link to editor -->
+<!-- Navbar with app name, search, and link to editor -->
 <div class="navbar">
     <span class="app-name">WanderFind</span>  <!-- Unique App Name -->
     <form action="" method="get" style="flex-grow: 1; margin-left: 20px;">
@@ -121,6 +133,7 @@
         <button type="submit" style="padding: 8px;">Search</button>
     </form>
     <a href="/destinationeditor">Destination List Editor</a>
+    <a href="/addlocation" class="add-location">Add Location</a>
 </div>
 
 <div class="destination-container">

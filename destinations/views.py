@@ -122,3 +122,17 @@ def delete_destination(request, pk):
 def destination_editor(request):
     destinations = Destination.objects.all()
     return render(request, 'destinations/destination_editor.html', {'destinations': destinations})
+
+# destinations/views.py
+from django.shortcuts import render, redirect
+from .forms import DestinationForm
+
+def add_location(request):
+    if request.method == 'POST':
+        form = DestinationForm(request.POST, request.FILES)  # Include FILES for image uploads
+        if form.is_valid():
+            form.save()  # Save the new location
+            return redirect('destinations')  # Redirect to the destinations page
+    else:
+        form = DestinationForm()
+    return render(request, 'add_location.html', {'form': form})

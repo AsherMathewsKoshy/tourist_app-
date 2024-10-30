@@ -6,6 +6,8 @@ from rest_framework.authtoken.views import obtain_auth_token
 from django.contrib import admin
 router = DefaultRouter()
 router.register(r'destinations', DestinationViewSet)
+from django.urls import path
+from .views import add_location
 
 urlpatterns = [
     path('', include(router.urls)),  # Include the API routes
@@ -14,6 +16,6 @@ urlpatterns = [
     path('destinations/', dest_views.destination_list, name='destination_list'),  # Destination list for web
     path('api/login/', obtain_auth_token, name='api_token_auth'),
     path('admin/', admin.site.urls),
-
+    path('addlocation/', add_location, name='add_location'),
 
 ]

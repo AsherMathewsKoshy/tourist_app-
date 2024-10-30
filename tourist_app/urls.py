@@ -9,6 +9,8 @@ from destinations import views as dest_views
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'destinations', dest_views.DestinationViewSet)
+from django.urls import path
+from destinations.views import add_location
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -21,6 +23,7 @@ urlpatterns = [
     path('destinations/edit/<int:pk>/', dest_views.edit_destination, name='edit_destination'), 
     path('destinations/delete/<int:pk>/', dest_views.delete_destination, name='delete_destination'), 
     path('destinationeditor/', dest_views.destination_editor, name='destination_editor'),
+    path('addlocation/', add_location, name='add_location'),
 ]
 
 if settings.DEBUG:
