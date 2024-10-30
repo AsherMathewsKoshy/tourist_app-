@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f3f7fa;
+            color: #333;
+        }
+        .form-container {
+            background: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5em;
+            font-weight: 500;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #6c63ff;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #6c63ff;
+            color: #fff;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #5750d6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Register</h2>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country" onchange="loadStates()" required>
+            <option value="">Select Country</option>
+            <!-- You can dynamically populate options here or use JavaScript to fetch them -->
+        </select>
+
+        <label for="state">State:</label>
+        <select id="state" name="state" onchange="loadDistricts()" required>
+            <option value="">Select State</option>
+            <!-- States will be populated based on selected country -->
+        </select>
+
+        <label for="district">District:</label>
+        <select id="district" name="district" required>
+            <option value="">Select District</option>
+            <!-- Districts will be populated based on selected state -->
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<!-- Ensure the 'dropdowns.js' file exists in your static/js directory -->
+<script src="{% static 'js/dropdowns.js' %}"></script>  <!-- Link to your JavaScript file for dependent dropdowns -->
+</body>
+</html>

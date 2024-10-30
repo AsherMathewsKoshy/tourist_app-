@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Destinations</title>
+</head>
+<body>
+    <h1>Destination List</h1>
+    <button id="fetchDestinations">Fetch Destinations</button>
+    <pre id="result"></pre>
+
+    <script>
+        // This should be replaced with the actual token you receive upon login
+        let token = localStorage.getItem('token') || '0de5a4908a30471cdaf693af0e7aa814d8dd281c'; // For testing purposes
+
+        document.getElementById('fetchDestinations').addEventListener('click', function() {
+            fetch('http://127.0.0.1:8000/api/destinations/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Token ${token}`,
+                    'Content-Type': 'application/json'  // Optional, but good practice
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2); // Displaying results
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').textContent = 'Error fetching data: ' + error.message; // Display error message
+            });
+        });
+    </script>
+</body>
+</html>

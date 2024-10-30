@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5); /* Smooth gradient */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #3498db;  /* Navbar background */
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #f39c12;  /* Bright orange on hover */
+        }
+        .navbar .app-name {
+            font-size: 1.5em;
+            font-family: 'Montserrat', sans-serif;
+            color: #f39c12; /* Bright orange for emphasis */
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #007BFF;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+        .destination-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        .destination {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+        .destination:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .destination img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.5s;
+        }
+        .destination:hover img {
+            transform: scale(1.05);
+        }
+        .destination h2 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+        .destination p {
+            margin: 8px 0;
+            color: #555;
+        }
+        .location-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .location-link:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+        .no-destinations {
+            text-align: center;
+            color: #e74c3c;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar with app name and link to editor -->
+<div class="navbar">
+    <span class="app-name">WanderFind</span>  <!-- Unique App Name -->
+    <a href="/destinationeditor">Destination List Editor</a>
+</div>
+
+<div class="destination-container">
+    <h1>Destinations</h1>
+    {% if destinations %}
+        {% for destination in destinations %}
+            <div class="destination">
+                <h2>{{ destination.place_name }}</h2>
+                {% if destination.image %}
+                    <img src="{{ destination.image.url }}" alt="{{ destination.place_name }}">
+                {% endif %}
+                <p><strong>Weather:</strong> {{ destination.weather }}</p>
+                <p><strong>Country:</strong> {{ destination.country }}</p>
+                <p><strong>State:</strong> {{ destination.state }}</p>
+                <p><strong>District:</strong> {{ destination.district }}</p>
+                <p><strong>Description:</strong> {{ destination.description }}</p>
+                <a class="location-link" href="{{ destination.location_link }}">View Location</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-destinations">No destinations available.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

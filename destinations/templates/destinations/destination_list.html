@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Destinations</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Tourist Destinations</h1>
+    <table>
+        <tr>
+            <th>Place Name</th>
+            <th>Weather</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+        {% for destination in destinations %}
+        <tr>
+            <td>{{ destination.place_name }}</td>
+            <td>{{ destination.weather }}</td>
+            <td>{{ destination.state }}, {{ destination.district }}</td>
+            <td>
+                <a href="{% url 'destination_detail' destination.id %}">View</a> |
+                <a href="{% url 'destination_edit' destination.id %}">Edit</a> |
+                <a href="{% url 'destination_delete' destination.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'destination_add' %}">Add New Destination</a>
+</body>
+</html>

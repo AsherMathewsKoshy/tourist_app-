@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Destination</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f3f7fa;
+            color: #333;
+        }
+        .form-container {
+            background: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5em;
+            font-weight: 500;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #d9534f;
+            color: #fff;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 1em;
+            text-decoration: none;
+            color: #6c63ff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Delete Destination</h2>
+    <p>Are you sure you want to delete "{{ destination.place_name }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+    </form>
+    <a href="{% url 'destination_list' %}">Cancel</a>
+</div>
+
+</body>
+</html>
